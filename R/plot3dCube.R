@@ -15,9 +15,11 @@
 #'
 #' @export
 plot3dCube <- function(cube, sides = "both", rotate = "O") {
+  ocube <- cube
   cube <- twistCube(cube,rotate)
   if(sides == "both") par(mfrow=c(1,2))
 if(sides %in% c("top","both"))  plot3Dtop(cube)
    if(sides %in% c("bottom","both") ) plot3Dbottom(cube)
+  return(ocube)
 }
 

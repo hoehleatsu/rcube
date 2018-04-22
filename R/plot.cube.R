@@ -29,5 +29,5 @@ plot.cube <- function(x, ...) {
         })
 
     }
-
+return(x)
     }

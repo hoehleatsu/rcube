@@ -1,14 +1,14 @@
-b021b5ba14bb800af8ca6c9dee965615 *DESCRIPTION
-43a2219d9f6a14c98356d0c0b02fee05 *NAMESPACE
+0aa7863cc5f0dd2a0610c2cbd1418eac *DESCRIPTION
+bd9ab4fe8bc0f28c86184aca0cc9b8c9 *NAMESPACE
 3afae8b85671b9e8b144c315e15e76ec *R/createCube.R
 384525dda3b0175150e7089fde3c9d8d *R/is.solved.R
 2519f175849160ed1e7a4f704b17cc39 *R/misc.R
-d63458b7477e659c29061fc0b2a19052 *R/plot.cube.R
-876873a5d72a27b7ebb6bb5fae7ff5e8 *R/plot3dCube.R
+160a83794a0c30dac78b8d2b85ad116b *R/plot.cube.R
+4cdf24647e26b1980d60ac9f52cdc3e9 *R/plot3dCube.R
 3d88dd78c558ec9843ef244c4985b27a *R/positions.R
 c41e43dd11f607366a6ee0eccc45d3ea *R/print.cube.R
 9560b4c82f95941661004699b3b5b288 *R/translate.R
-92df38d4762fa38a1f12516afde3d916 *R/twistCube.R
+95887820b8548bc771568421a3f6d605 *R/twistCube.R
 642753d815c87da05cc0eefa3ac8b2c8 *data/positions.RData
 c76c6e3d96302a3c8b152f952459755a *man/createCube.Rd
 ee8e875706c9ffbd3b38b2deb2dae077 *man/is.solved.Rd
@@ -17,4 +17,4 @@ d5b3ecac072bb073b43feb621bea1891 *man/plot3dCube.Rd
 893b4907f653e3d625ec6336c4cb8f57 *man/positions.Rd
 db20257aa0a74058db02c36b4e161e32 *man/print.cube.Rd
 48dda61f22c743f3c867083ed871de50 *man/translate.Rd
-1c715acac337d6cd62ae9ad650a5cf37 *man/twistCube.Rd
+11774ce5adff10c2fc7221c7d380b574 *man/twistCube.Rd
