@@ -10,9 +10,9 @@ createCube(N = 3, mode = "normal", scheme = c("orange", "yellow", "blue",
 \arguments{
 \item{N}{integer - size of cube. Default value is 3, and maximum is 20. More than maximum (20) is possible, however parser will ignore moving layers with number greater than 10 - you will not be able to get full varity of those cubes.}
 
-\item{mode}{string "normal" (default) or "octa" or "void".}
+\item{mode}{string "normal" (default) or "octa" or "void". There are also are also available learning modes. Use keywords: "cross","first layer", "first two layers", "corners", "edges" to obtain your mode. For example "cross,centers", "corners" or "edges and centers". Default color scheme is the same as defined in parameter with added gray color.}
 
-\item{scheme}{string vector - colour scheme for plotting cube. Name of colours should be given in specified order: front, top, right, bottom, left, back.
+\item{scheme}{string vector - colour scheme for plotting cube. Name of colours should be given in specified order: front, top, right, bottom, left, back. In learning mode there is possibility to define 12 colors (standard 6 colors and 6 which are default gray).
 
 Default value is c("orange","yellow","blue","white","green","red")}
 }
@@ -29,5 +29,10 @@ cube <- createCube()
 cube <- createCube(N = 14)
 # Create 3x3x3 cube with "japanese" color scheme:
 cube <- createCube(scheme = c("green","white","red","blue","orange","yellow"))
-
+# Create 3x3x3 learning cubes:
+c <- createCube(mode = "cross and centers")
+c2 <- createCube(mode = "first layer and centers")
+c3 <- createCube(mode = "first two layers")
+# Create cube with coloured corners and edges:
+c <- createCube(N = 4, mode = "corners and edges")
 }

@@ -3,8 +3,8 @@
 #' Creates a cube object with empty moves and color scheme information
 #'
 #' @param N integer - size of cube. Default value is 3, and maximum is 20. More than maximum (20) is possible, however parser will ignore moving layers with number greater than 10 - you will not be able to get full varity of those cubes.
-#' @param mode string "normal" (default) or "octa" or "void".
-#' @param scheme string vector - colour scheme for plotting cube. Name of colours should be given in specified order: front, top, right, bottom, left, back.
+#' @param mode string "normal" (default) or "octa" or "void". There are also are also available learning modes. Use keywords: "cross","first layer", "first two layers", "corners", "edges" to obtain your mode. For example "cross,centers", "corners" or "edges and centers". Default color scheme is the same as defined in parameter with added gray color.
+#' @param scheme string vector - colour scheme for plotting cube. Name of colours should be given in specified order: front, top, right, bottom, left, back. In learning mode there is possibility to define 12 colors (standard 6 colors and 6 which are default gray).
 #'
 #' Default value is c("orange","yellow","blue","white","green","red")
 #' @return Cube class object
@@ -16,7 +16,12 @@
 #' cube <- createCube(N = 14)
 #' # Create 3x3x3 cube with "japanese" color scheme:
 #' cube <- createCube(scheme = c("green","white","red","blue","orange","yellow"))
-#'
+#' # Create 3x3x3 learning cubes:
+#' c <- createCube(mode = "cross and centers")
+#' c2 <- createCube(mode = "first layer and centers")
+#' c3 <- createCube(mode = "first two layers")
+#' # Create cube with coloured corners and edges:
+#' c <- createCube(N = 4, mode = "corners and edges")
 #' @export
 createCube <- function(N = 3, mode = "normal", scheme = c("orange","yellow","blue","white","green","red")) {
   k0 <- matrix(rep(0,times = N*N),ncol = N)
@@ -72,6 +77,72 @@ createCube <- function(N = 3, mode = "normal", scheme = c("orange","yellow","blu
     k5[l:p,l:p] <- 7
     k6[l:p,l:p] <- 7
 scheme <- c(scheme,"black")
+  }
+  if(grepl("cross",mode)+grepl("first",mode)+grepl("layer",mode)+grepl("corners",mode)+grepl("edges",mode)+grepl("corners",mode)+grepl("centers",mode)){
+    l <- floor(N/3)+1
+    p <- N-l+1
+    if(length(scheme)==6) scheme <- c(rep("gray53",6),scheme)
+    k1 <- matrix(rep(1,times = N*N),ncol = N)
+    k2 <- matrix(rep(2,times = N*N),ncol = N)
+    k3 <- matrix(rep(3,times = N*N),ncol = N)
+    k4 <- matrix(rep(4,times = N*N),ncol = N)
+    k5 <- matrix(rep(5,times = N*N),ncol = N)
+    k6 <- matrix(rep(6,times = N*N),ncol = N)
+  }
+  if(grepl("cross",mode)){
+    k1[1:N,l:p] <- 7
+    k1[l:p,1:N] <- 7
+    k2[N,l:p] <- 8
+    k3[l:p,1] <- 9
+    k4[1,l:p] <- 10
+    k5[l:p,N] <- 11
+  }
+  if(grepl("first layer",mode)){
+    k1[1:N,1:N] <- 7
+    k1[1:N,1:N] <- 7
+    k2[N,1:N] <- 8
+    k3[1:N,1] <- 9
+    k4[1,1:N] <- 10
+    k5[1:N,N] <- 11
+  }
+  if(grepl("first two layers",mode)){
+    k1[1:N,1:N] <- 7
+    k1[1:N,1:N] <- 7
+    k2[l:N,1:N] <- 8
+    k3[1:N,1:p] <- 9
+    k4[1:p,1:N] <- 10
+    k5[1:N,l:N] <- 11
+  }
+  if(grepl("corners",mode)){
+    k1[c(1,N),c(1,N)] <- 7
+    k2[c(1,N),c(1,N)] <- 8
+    k3[c(1,N),c(1,N)] <- 9
+    k4[c(1,N),c(1,N)] <- 10
+    k5[c(1,N),c(1,N)] <- 11
+    k6[c(1,N),c(1,N)] <- 12
+  }
+
+  if(grepl("edges",mode)){
+    k1[c(1,N),c(2:(N-1))] <- 7
+    k1[c(2:(N-1)),c(1,N)] <- 7
+    k2[c(1,N),c(2:(N-1))] <- 8
+    k2[c(2:(N-1)),c(1,N)] <- 8
+    k3[c(1,N),c(2:(N-1))] <- 9
+    k3[c(2:(N-1)),c(1,N)] <- 9
+    k4[c(1,N),c(2:(N-1))] <- 10
+    k4[c(2:(N-1)),c(1,N)] <- 10
+    k5[c(1,N),c(2:(N-1))] <- 11
+    k5[c(2:(N-1)),c(1,N)] <- 11
+    k6[c(1,N),c(2:(N-1))] <- 12
+    k6[c(2:(N-1)),c(1,N)] <- 12
+  }
+  if(grepl("centers",mode)){
+    k1[c(2:(N-1)),c(2:(N-1))] <- 7
+    k2[c(2:(N-1)),c(2:(N-1))] <- 8
+    k3[c(2:(N-1)),c(2:(N-1))] <- 9
+    k4[c(2:(N-1)),c(2:(N-1))] <- 10
+    k5[c(2:(N-1)),c(2:(N-1))] <- 11
+    k6[c(2:(N-1)),c(2:(N-1))] <- 12
   }
   w1 <- cbind(k0,k2,k0,k0)
   w2 <- cbind(k5,k1,k3,k6)
