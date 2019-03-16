@@ -15,6 +15,6 @@
 print.cube <- function(x, ...)
   {
   N <- x$size
-  cat(paste0("Cube size ",N,"x",N,"x",N))
+  cat(paste0("Cube size ",N,"x",N,"x",N,"\n"))
 
 }
